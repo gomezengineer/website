@@ -1,0 +1,213 @@
+/* Estilos base enfocados en usabilidad y legibilidad */
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --correct: #16a34a;
+    --incorrect: #dc2626;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden { display: none !important; }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.category-badge {
+    background-color: #e0e7ff;
+    color: #3730a3;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.question-id {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: ui-monospace, monospace;
+}
+
+.timer-display {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: ui-monospace, monospace;
+    background-color: #f1f5f9;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* --- ESTILOS PARA LA PREGUNTA (TEXTO NORMAL) --- */
+pre.question-pre {
+    background-color: #1e293b;
+    color: #f8fafc;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* --- ESTILOS PARA EL BLOQUE DE CÓDIGO NUMERADO --- */
+pre.code-block {
+    background-color: #1e293b;
+    color: #f8fafc;
+    padding: 1rem 0; 
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    counter-reset: line; /* Inicia el contador de CSS */
+    border-left: 4px solid var(--primary);
+    margin-top: 1rem;
+}
+
+pre.code-block code {
+    font-family: ui-monospace, monospace;
+    display: block;
+}
+
+.code-line {
+    display: block;
+    padding-right: 1rem;
+}
+
+/* Pseudo-elemento para pintar el número de línea */
+.code-line::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 2rem;
+    padding-right: 0.5rem;
+    margin-right: 1rem;
+    text-align: right;
+    color: #64748b;
+    border-right: 1px solid #334155;
+    user-select: none; /* Evita que el número se copie */
+}
+
+.code-line:hover {
+    background-color: #334155;
+}
+
+code { font-family: ui-monospace, monospace; }
+
+p.question-text { font-size: 1.125rem; font-weight: 500; line-height: 2; }
+
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.option {
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+.option:hover:not(.disabled) { border-color: #cbd5e1; background-color: #f1f5f9; }
+.option.selected { border-color: var(--primary); background-color: #eff6ff; }
+.option.correct { border-color: var(--correct); background-color: #f0fdf4; color: #166534; }
+.option.incorrect { border-color: var(--incorrect); background-color: #fef2f2; color: #991b1b; }
+.option.disabled { cursor: default; pointer-events: none; }
+
+.btn {
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    align-self: flex-end;
+}
+
+.btn:hover:not(:disabled) { background-color: var(--primary-hover); }
+.btn:disabled { background-color: #94a3b8; cursor: not-allowed; }
+
+.feedback {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    border-left: 4px solid var(--primary);
+}
+
+.feedback h4 { margin-top: 0; margin-bottom: 0.5rem; }
+.feedback.success { border-left-color: var(--correct); background-color: #f0fdf4; }
+.feedback.error { border-left-color: var(--incorrect); background-color: #fef2f2; }
+
+.stats-list p { font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem; }
+.hardest-list li { margin-bottom: 0.5rem; color: var(--incorrect); }
+
+#instruction { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+/* --- BOTÓN DE REINICIO --- */
+.btn-reset {
+    background-color: transparent;
+    color: var(--incorrect);
+    border: 1px solid var(--incorrect);
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-reset:hover {
+    background-color: #fef2f2;
+}

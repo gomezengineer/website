@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulador de Examen</title>
+        <link rel="stylesheet" href="./styles.css">
+        <script src="./script.js" defer></script>
+    </head>
+    <body>
+        <div id="quiz-container" class="container">
+            <div class="header">
+                <div class="header-left">
+                    <span id="category-badge" class="category-badge">Categoría</span>
+                    <span id="question-id" class="question-id">ID: 0</span>
+                    <span id="timer-display" class="timer-display">⏱ 00:00:00</span>
+                </div>
+                <div class="header-right" style="display: flex; align-items: center; gap: 1rem;">
+                    <span id="queue-counter" style="color: var(--text-muted); font-weight: 500;">Preguntas en cola: 0</span>
+                    <button id="reset-btn" class="btn-reset" title="Reiniciar todo de cero">🔄 Reiniciar</button>
+                </div>
+            </div>
+            
+            <div id="question-content"></div>
+            <div id="instruction"></div>
+            
+            <div id="options-container" class="options-grid"></div>
+
+            <div id="feedback-container" class="feedback hidden">
+                <h4 id="feedback-title"></h4>
+                <div id="explanation-text"></div>
+            </div>
+
+            <button id="action-btn" class="btn" disabled>Comprobar Respuesta</button>
+        </div>
+
+        <div id="result-container" class="container hidden">
+            <h2>🎉 ¡Examen Finalizado!</h2>
+            <div id="final-stats" class="stats-list"></div>
+            <button class="btn" onclick="location.reload()" style="align-self: flex-start; margin-top: 2rem;">Repetir Examen</button>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,1238 @@
+[
+  {
+    "id": 1,
+    "categoria": "Analytics, Insights and Semantic Layer",
+    "pregunta": "A retail company wants a dashboard to display \"Top 10 Trending Products\" based on product page views over the last 24 hours. The company typically has over 500 million engagements a week. The requirements specify that the maximum latency for data freshness is 15 minutes and the dashboard must load with minimal load times for executive users. Which architectural component should the Data 360 Consultant use to meet these performance and scale requirements?",
+    "opciones": {
+      "A": "Direct Related List",
+      "B": "Calculated Insights",
+      "C": "Real-Time Data Graph",
+      "D": "Streaming Insight"
+    },
+    "respuesta": "D",
+    "explicacion": "Para procesar flujos masivos de datos con alta frecuencia (millones de interacciones) y cumplir con un requisito de latencia mínima en tiempo casi real (menor a 15 minutos), la arquitectura nativa de Data Cloud requiere el uso de 'Streaming Insights'. Estos calculan métricas continuas sobre los datos en movimiento antes de que se asienten en el almacenamiento."
+  },
+  {
+    "id": 2,
+    "categoria": "Data Modeling and Harmonization",
+    "pregunta": "A data architect is modeling a relationship between a custom Vehicle data model object (DMO) and the standard Individual DMO to track car ownership. The requirement states that one vehicle can be owned by only one individual, but one individual can own multiple vehicles. Which cardinality should the architect select when creating this relationship from Vehicle to Individual?",
+    "opciones": {
+      "A": "One-to-One (1:1)",
+      "B": "Many-to-Many (N:N)",
+      "C": "Many-to-One (N:1)",
+      "D": "One-to-Many (1:N)"
+    },
+    "respuesta": "C",
+    "explicacion": "La dirección de la relación define la cardinalidad. Si se está configurando desde la perspectiva del Vehículo (el cual pertenece a un solo individuo) hacia el Individuo (quien puede poseer múltiples vehículos), la relación es de Muchos a Uno (Many-to-One / N:1)."
+  },
+  {
+    "id": 3,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "A Data 360 Consultant is setting up a data stream with transactional data. Which field type should the consultant choose to ensure that leading zeros in the purchase order number are preserved?",
+    "opciones": {
+      "A": "Number",
+      "B": "Decimal",
+      "C": "Text",
+      "D": "Serial"
+    },
+    "respuesta": "C",
+    "explicacion": "Los motores de bases de datos y herramientas de ingestión eliminan automáticamente los ceros a la izquierda al procesar tipos numéricos (Number/Decimal). Para preservar formatos exactos que incluyen ceros iniciales (como números de orden o códigos postales), el tipo de dato debe definirse estrictamente como Texto (Text)."
+  },
+  {
+    "id": 4,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "A Data 360 Consultant creates a segment of customers who placed orders in the last 30 days and includes related attributes from the Sales Order data model object (DMO) in the activation. After activating the segment to Marketing Cloud, the customer notices that some orders older than 30 days are included. What should the consultant do to resolve this issue?",
+    "opciones": {
+      "A": "Filter out older orders in Marketing Cloud after activation.",
+      "B": "Apply a data space filter to exclude orders older than 30 days.",
+      "C": "Apply a 30-day date filter on the Sales Order DMO within the activation.",
+      "D": "Build a segment using the Sales Order DMO and filter orders to the last 30 days."
+    },
+    "respuesta": "C",
+    "explicacion": "El Segmento define 'quién' entra en la audiencia, pero la Activación empuja todos los registros relacionados por defecto. Para restringir la carga útil de los atributos relacionados (Related Attributes) y enviar únicamente las órdenes recientes, se debe aplicar un filtro de tiempo directamente sobre el DMO relacionado dentro de la configuración de la Activación."
+  },
+  {
+    "id": 5,
+    "categoria": "CRM Enrichment and Actions",
+    "pregunta": "A Data 360 Consultant is building a marketing-to-sales handoff process that requires sales reps to see a chronological list of a prospect's Web Page Views and Email Clicks directly on the Lead record. These interactions are stored as Engagement data in Data 360. What is the most efficient way to display this?",
+    "opciones": {
+      "A": "Embed a filtered report chart on the record page that queries the Data 360 objects directly.",
+      "B": "Drag the native Data 360 Related List Enrichment onto the Lead Lightning page and configure the relevant Engagement data model objects (DMOs).",
+      "C": "Create a custom object in Salesforce, use Flow to sync Data 360 Engagement records back to CRM, and add a standard related list.",
+      "D": "Use Dynamic Forms to conditionally show fields from the Data 360 Individual object based on the Lead's status."
+    },
+    "respuesta": "B",
+    "explicacion": "Salesforce proporciona componentes nativos de enriquecimiento. El componente 'Related List Enrichment' permite a los administradores arrastrar y mostrar directamente en la página de CRM los registros de interacción alojados en los DMOs de Data Cloud, eliminando la necesidad de replicar datos mediante flujos u objetos personalizados."
+  },
+  {
+    "id": 6,
+    "categoria": "Lifecycle Management and Deployment",
+    "pregunta": "A data architect is using Change Sets to move a new set of data configurations between two Salesforce Data 360 environments. The architect has created a data kit in the source org that includes several new data streams and identity resolution rules. Which component type should the architect select when adding these to the outbound change set to ensure the configuration is successfully transferred?",
+    "opciones": {
+      "A": "Data Stream Configuration",
+      "B": "Identity Resolution Ruleset",
+      "C": "Data 360 Metadata Definition",
+      "D": "Data Package Kit Definition"
+    },
+    "respuesta": "D",
+    "explicacion": "Para migrar y promover empaquetados de Data Cloud (Data Kits) a través del mecanismo tradicional de Conjuntos de Cambios (Change Sets), el metadato exacto que encapsula todas las configuraciones agrupadas se identifica bajo la etiqueta de componente 'Data Package Kit Definition'."
+  },
+  {
+    "id": 7,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "An architect is managing a Full Sandbox that is used for performance testing of Data 360 segments. The team decides to perform a sandbox refresh to bring over the latest Schema changes and record updates from the production environment. What is the impact of this refresh on the existing Data 360 configuration within that sandbox?",
+    "opciones": {
+      "A": "The sandbox maintains its connection to the existing Data 360 instance, but all data mapping is reverted to Draft status.",
+      "B": "Only the identity resolution rules are deleted, while data streams remain active and continue to pull data from the refreshed sandbox objects.",
+      "C": "The Data 360 instance is deleted and a new, blank Data 360 instance must be provisioned after the refresh.",
+      "D": "All Data 360 metadata is replicated from the current version of production instance, and the ingested records are cleared and must be re-ingested."
+    },
+    "respuesta": "D",
+    "explicacion": "Al ejecutar un refresco (Refresh) sobre un Sandbox conectado a Data Cloud, Salesforce preserva y clona toda la estructura de metadatos (reglas, flujos, mapeos), pero purga por completo los datos en crudo almacenados. Por consiguiente, los registros deben ser ingeridos nuevamente para realizar pruebas."
+  },
+  {
+    "id": 8,
+    "categoria": "Security, Privacy and Governance",
+    "pregunta": "In Data 360, which mechanism ensures different business units can use the same Data 360 home org while keeping their data and metadata logically separated, to meet governance or compliance requirements?",
+    "opciones": {
+      "A": "Use separate companion connections within the same data space",
+      "B": "Use different permission sets within the same data space",
+      "C": "Use separate data spaces for each business unit",
+      "D": "Use separate objects per business unit with record-type filtering"
+    },
+    "respuesta": "C",
+    "explicacion": "Los 'Espacios de Datos' (Data Spaces) son la herramienta arquitectónica principal para la segregación lógica. Permiten dividir una única organización de Data Cloud en particiones aisladas para diferentes marcas o unidades de negocio, garantizando la privacidad de los datos y el cumplimiento normativo sin requerir múltiples orgs."
+  },
+  {
+    "id": 9,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "A customer has two Data 360 orgs. A new configuration has been completed and tested for an Amazon S3 data stream and its mappings in one of the Data 360 orgs. What is recommended to package and promote this configuration to the customer's second org?",
+    "opciones": {
+      "A": "Use the Salesforce CRM Connector.",
+      "B": "Use the Metadata API.",
+      "C": "Package as an AppExchange application.",
+      "D": "Create a data kit."
+    },
+    "respuesta": "D",
+    "explicacion": "El 'Data Kit' es el formato estándar de empaquetado dentro de Data Cloud diseñado explícitamente para encapsular configuraciones de flujos de datos (Data Streams), mapeos y modelos. Esto facilita promover y desplegar arquitecturas ya probadas hacia otras instancias."
+  },
+  {
+    "id": 10,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "A Data 360 Consultant wants to ensure that every segment managed by multiple brand teams adheres to the same set of exclusion criteria that are updated on a monthly basis. What is the most efficient option to allow for this capability?",
+    "opciones": {
+      "A": "Create a segment and copy it for each brand.",
+      "B": "Create, publish, and deploy a data kit.",
+      "C": "Create a reusable container block with common criteria.",
+      "D": "Create a nested segment."
+    },
+    "respuesta": "C",
+    "explicacion": "Crear un bloque contenedor reutilizable (o utilizar segmentos anidados para heredar reglas) permite centralizar la lógica de exclusión en un único origen de verdad. Al actualizar este componente mensualmente, las exclusiones se propagan automáticamente a todos los equipos de marca que lo empleen."
+  },
+  {
+    "id": 11,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "A Data 360 Consultant noticed a recent increase in a customer's consolidation rate. Which change to the identity resolution ruleset typically causes this result?",
+    "opciones": {
+      "A": "Modifying a ruleset that increases the number of matched profiles",
+      "B": "Removing existing identity resolution rules",
+      "C": "Reducing the number of data sources mapped to the Individual object",
+      "D": "Deleting duplicate records from source data streams"
+    },
+    "respuesta": "A",
+    "explicacion": "La Tasa de Consolidación (Consolidation Rate) refleja el nivel de compresión de la base de datos (cuántos perfiles fuente se unieron en perfiles únicos). Modificar las reglas de coincidencia (Match Rules) haciéndolas más laxas o agregando más criterios provocará que más perfiles dispares se fusionen, incrementando lógicamente esta tasa."
+  },
+  {
+    "id": 12,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "A customer has multiple data sources and needs to match and reconcile data about individuals into a single unified profile. Which feature should the Data 360 Consultant recommend for the customer?",
+    "opciones": {
+      "A": "Identity Resolution",
+      "B": "Data Consolidation",
+      "C": "Data Cleansing",
+      "D": "Harmonization"
+    },
+    "respuesta": "A",
+    "explicacion": "La 'Resolución de Identidad' (Identity Resolution) es el motor algorítmico núcleo de Data Cloud. Su propósito exacto es leer datos dispares desde múltiples fuentes, aplicar reglas de coincidencia y reconciliación, y forjar un Perfil Unificado único por cada individuo."
+  },
+  {
+    "id": 13,
+    "categoria": "Zero Copy, Federation and Data Sharing",
+    "pregunta": "When setting up file federation for a data lake on Azure Blob Storage, what is the role of the manifest file?",
+    "opciones": {
+      "A": "It reduces the file size of the source data before Data 360 attempts to read it.",
+      "B": "It is used to manually map source fields to the Cloud Information Model.",
+      "C": "It defines metadata and paths to identify specific files for the data stream and track updates.",
+      "D": "It provides the PGP public key required to decrypt the federated data files."
+    },
+    "respuesta": "C",
+    "explicacion": "En esquemas de federación (Zero Copy/BYOL), Data Cloud no copia los datos a su base. El archivo manifiesto actúa como un índice vital que provee al motor la metadata, el esquema y la ruta precisa hacia los archivos almacenados en la nube externa (Azure) para saber qué leer y cómo seguir las actualizaciones."
+  },
+  {
+    "id": 14,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "What does the Ignore Empty Value option do in Identity Resolution?",
+    "opciones": {
+      "A": "Ignores Individual object records with empty fields when running identity resolution rules",
+      "B": "Ignores Contact Point object records with empty fields when running identity resolution rules",
+      "C": "Ignores empty fields when running reconciliation rules",
+      "D": "Ignores empty fields when running match rules"
+    },
+    "respuesta": "D",
+    "explicacion": "Al activar 'Ignorar valores vacíos' (Ignore Empty Value), el sistema se asegura de que los campos nulos no se utilicen para forzar una coincidencia (Match). Esto previene que dos registros totalmente distintos se fusionen por accidente simplemente porque ambos carecen de información en un mismo campo (como tener el correo electrónico en blanco)."
+  },
+  {
+    "id": 15,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "A Data 360 Consultant has set up an identity resolution ruleset for their client's Data 360 implementation and now wants to confirm the results. Which two features should the consultant use to validate the data on a unified profile?",
+    "opciones": {
+      "A": "Profile Explorer and Query Editor",
+      "B": "Data Explorer and Actions",
+      "C": "Identity Resolution and Query API",
+      "D": "Data Actions and Query API"
+    },
+    "respuesta": "A",
+    "explicacion": "Para auditar visualmente los perfiles dorados generados, el 'Explorador de Perfiles' (Profile Explorer) permite buscar individuos unificados y ver su linaje de datos. A nivel granular y estadístico, el 'Editor de Consultas' (Query Editor / Data Explorer) permite lanzar sentencias SQL para validar cómo se estructuraron las tablas de resolución."
+  },
+  {
+    "id": 16,
+    "categoria": "Analytics, Insights and Semantic Layer",
+    "pregunta": "What is the minimum requirement needed when using the Visual Insights Builder to create a calculated insight?",
+    "opciones": {
+      "A": "Joining on two or more data model objects",
+      "B": "A SUM function",
+      "C": "At least one measure and one dimension",
+      "D": "A WHERE clause"
+    },
+    "respuesta": "C",
+    "explicacion": "Un Conocimiento Calculado (Calculated Insight) agrupa y cuantifica datos basándose en SQL subyacente. Estructuralmente, es imposible construir uno sin definir qué vas a calcular (Una Medida o 'Measure') y bajo qué atributo lo vas a agrupar (Una Dimensión o 'Dimension')."
+  },
+  {
+    "id": 17,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "A marketer needs to segment customers based on their Lifetime Loyalty Points. This requires summing all point-based transactions from a historical ledger brought in from their data lake along with a Commerce Cloud data stream. Which tool should the marketer use?",
+    "opciones": {
+      "A": "Streaming Transform",
+      "B": "Calculated Insight",
+      "C": "Batch Transform",
+      "D": "Secondary Index"
+    },
+    "respuesta": "B",
+    "explicacion": "Para computar agregaciones matemáticas complejas a gran escala, como el valor del ciclo de vida (LTV) o sumatorias de lealtad cruzando múltiples flujos históricos para su uso posterior en segmentación, el motor diseñado algorítmicamente para esta labor es el 'Calculated Insight'."
+  },
+  {
+    "id": 18,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "A Data 360 Consultant needs to filter out specific contact points from the Unified Individuals that qualify for a segment. Where should the consultant apply this filtering?",
+    "opciones": {
+      "A": "Apply contact point filtering during the creation of the segment",
+      "B": "Apply contact point filtering when creating an activation",
+      "C": "Apply contact point filtering leveraging a calculated insight",
+      "D": "Apply contact point filtering on data ingestion"
+    },
+    "respuesta": "B",
+    "explicacion": "El proceso de filtrado del canal específico (qué correo electrónico o número telefónico priorizar y extraer para enviar la campaña) se realiza durante la creación de la Activación (Activation). El Segmento agrupa individuos, la Activación filtra y mapea los Puntos de Contacto requeridos."
+  },
+  {
+    "id": 19,
+    "categoria": "Data 360 Fundamentals",
+    "pregunta": "An organization is just getting started with Data 360 and wants to demonstrate quick wins in order to build momentum for broader adoption. Which business outcome should the organization prioritize?",
+    "opciones": {
+      "A": "Consolidating all partner and supply chain data into a single master management hub",
+      "B": "Implementing a global data lineage system to calculate data quality scores and create audit reports for compliance teams across all business units",
+      "C": "Building a predictive platform to update dynamic segments every 30 seconds",
+      "D": "Improving customer service resolution times by giving support agents a 360-degree view"
+    },
+    "respuesta": "D",
+    "explicacion": "Las victorias rápidas ('Quick Wins') deben proveer un valor transaccional alto con un esfuerzo de implementación moderado. Exponer el perfil unificado consolidado a los agentes de soporte (Customer 360 View) mejora dramáticamente los tiempos de resolución y sirve como caso de éxito visible e inmediato para la adopción corporativa."
+  },
+  {
+    "id": 20,
+    "categoria": "Analytics, Insights and Semantic Layer",
+    "pregunta": "When reporting on calculated insights in Salesforce, what is a critical limitation a Data 360 Consultant must keep in mind regarding data freshness?",
+    "opciones": {
+      "A": "The data reflects the state of the last time the insight was batch processed.",
+      "B": "Calculated insights can only be reported on if they contain fewer than 2,000 total rows.",
+      "C": "Insights are only available in reports if they have been \"Activated\" to a Marketing Cloud engagement.",
+      "D": "Calculated insights are only updated once every 24 hours."
+    },
+    "respuesta": "A",
+    "explicacion": "Los Conocimientos Calculados (Calculated Insights) estándar operan como procesamientos en lotes (Batch processing). Por su naturaleza arquitectónica, los tableros e informes que los consumen no verán datos 'en vivo', sino que exhibirán la fotografía estática calculada durante la última vez que el motor de lote corrió exitosamente."
+  },
+  {
+    "id": 21,
+    "categoria": "Security, Privacy and Governance",
+    "pregunta": "A Data 360 Consultant is preparing to implement Data 360. Which ethic should the consultant adhere to regarding customer data?",
+    "opciones": {
+      "A": "Carefully consider asking for sensitive data such as age, gender, and ethnicity.",
+      "B": "Give senior leaders in the firm access to customer data for audit purposes.",
+      "C": "Collect and use all of the data to create more personalized experiences.",
+      "D": "Map sensitive data to the same data model object for ease of deletion."
+    },
+    "respuesta": "A",
+    "explicacion": "El uso ético de datos en Data Cloud (anteriormente Data 360) dicta el principio de minimización de datos. El consultor debe evaluar críticamente si es estrictamente necesario recolectar datos altamente sensibles (como origen étnico o género) antes de configurar su ingesta, garantizando la privacidad por diseño."
+  },
+  {
+    "id": 22,
+    "categoria": "Data Modeling and Management",
+    "pregunta": "What are three characteristics of a master-detail relationship?",
+    "opciones": {
+      "A": "Permissions for the detail record are set independently of the master.",
+      "B": "The master object can be a standard or custom object.",
+      "C": "Roll-up summaries are supported in master-detail relationships.",
+      "D": "The owner field on the detail records is the owner of the master record.",
+      "E": "Each object can have up to five master-detail relationships."
+    },
+    "respuesta": "B C D",
+    "explicacion": "Las relaciones Maestro-Detalle imponen una fuerte dependencia: el objeto Maestro (que puede ser estándar o personalizado) controla los permisos y la propiedad del registro Detalle (hijo), eliminando el campo 'Propietario' del hijo. Además, esta arquitectura es el único requisito nativo indispensable para construir campos de resumen (Roll-up Summaries)."
+  },
+  {
+    "id": 23,
+    "categoria": "Agentforce AI",
+    "pregunta": "A new agent is being developed to help customer service reps process customer requests for a replacement product. The agent needs to call an action that takes two inputs:\nproductId: An 18 character ID for the product being replaced\nreasonCode: A three-digit code representing the reason for the replacement\nWhich set of agent instructions should a Platform Administrator use for these inputs, according to best practices for Agentforce instructions?",
+    "opciones": {
+      "A": "Instructions for productId: \"The 18 character ID of the product.\" Instructions for reasonCode: \"A numerical code.\"",
+      "B": "Instructions for productId: \"The product ID. Retrieve this from the conversation history or the user's input.\" Instructions for reasonCode: \"The three-digit replacement reason. This is required when the product ID is present.\"",
+      "C": "Instructions for productId: \"ID from the product record.\" Instructions for reasonCode: \"Code for the reason.\"",
+      "D": "Instructions for productId: \"The 18 character ID of the product. Retrieve this from the conversation history or the user's input. Required.\" Instructions for reasonCode: \"A three-digit code that specifies the reason for replacement. This is required only when the product ID is present.\""
+    },
+    "respuesta": "D",
+    "explicacion": "Las directrices oficiales de Agentforce exigen que las instrucciones de los parámetros de entrada sean sumamente explícitas: deben definir la longitud o formato exacto del dato, el origen esperado para extraerlo (contexto de la charla) y las condiciones precisas de obligatoriedad."
+  },
+  {
+    "id": 24,
+    "categoria": "Configuration and Setup",
+    "pregunta": "A sales rep has left the company, and a Platform Administrator has been asked to re-assign all their accounts and opportunities to a new sales rep and keep the team as is. Which tool should the administrator use to accomplish this?",
+    "opciones": {
+      "A": "Data Loader",
+      "B": "Dataloader.io",
+      "C": "Mass Transfer Records",
+      "D": "Data Import Wizard"
+    },
+    "respuesta": "C",
+    "explicacion": "Para realizar una transferencia masiva de propiedad de registros directamente desde la interfaz web (especialmente Cuentas y Oportunidades asociadas de un usuario saliente), la herramienta nativa más rápida y eficiente es 'Mass Transfer Records'."
+  },
+  {
+    "id": 25,
+    "categoria": "Sales and Marketing Applications",
+    "pregunta": "A Platform Administrator at Cloud Kicks has a custom picklist field on Lead, which is missing on the Contact when leads are converted. Which two steps should the administrator take to ensure these values are populated?",
+    "opciones": {
+      "A": "Update the picklist value with a validation rule.",
+      "B": "Create a custom picklist field on Contact.",
+      "C": "Map the picklist field on the Lead to the Contact.",
+      "D": "Set the picklist field to be required on the Lead object."
+    },
+    "respuesta": "B C",
+    "explicacion": "Para heredar un dato personalizado durante el mapeo de conversión de candidatos (Lead Conversion), primero se debe dar de alta el campo destino en el objeto Contacto. Posteriormente, se debe ingresar al configurador del objeto Lead y mapear los campos para asegurar la continuidad del dato."
+  },
+  {
+    "id": 26,
+    "categoria": "Object Manager and Lightning App Builder",
+    "pregunta": "Cloud Kicks wants to leverage roll-up summaries on the Account object. Which standard object supports this roll-up summary natively?",
+    "opciones": {
+      "A": "Opportunity",
+      "B": "Contact",
+      "C": "Case",
+      "D": "Campaigns"
+    },
+    "respuesta": "A",
+    "explicacion": "Aunque la Cuenta y la Oportunidad están vinculadas por una relación que aparenta ser de búsqueda (Lookup), Salesforce maneja una excepción nativa en su modelo de datos estándar que permite a la Cuenta crear campos de resumen (Roll-up Summary) para calcular métricas de sus Oportunidades."
+  },
+  {
+    "id": 27,
+    "categoria": "Service and Support Applications",
+    "pregunta": "Universal Containers wants to ensure that cases are routed to the right people at the right time, but there is a growing support organization. The business wants to be able to move people around and adjust the work they get without having to request extra assistance or rely on the administrator teams. Which tool allows the business to control its own assignment of work?",
+    "opciones": {
+      "A": "Case Assignment Rules",
+      "B": "Email-to-Case",
+      "C": "Omni-Channel",
+      "D": "Lead Assignment Rules"
+    },
+    "respuesta": "C",
+    "explicacion": "Omni-Channel es el motor de distribución de carga de trabajo en tiempo real de Salesforce. Permite gestionar colas y capacidades de los agentes dinámicamente, capacitando a los supervisores del negocio para ajustar quién recibe qué tipo de trabajo sin requerir reconfiguraciones constantes del Administrador."
+  },
+  {
+    "id": 28,
+    "categoria": "Configuration and Setup",
+    "pregunta": "DreamHouse Realty (DHR) wants a templated process with a mortgage calculator that generates leads for loans. DHR needs to complete the project within 30 days and has maxed out its budget for the year. Which AppExchange item should help a Platform Administrator meet the request?",
+    "opciones": {
+      "A": "Bolt Solutions",
+      "B": "Lightning Community",
+      "C": "Lightning Data",
+      "D": "Flow Solutions"
+    },
+    "respuesta": "D",
+    "explicacion": "Las soluciones empaquetadas de flujos (Flow Solutions) en la AppExchange proporcionan plantillas declarativas preconstruidas de lógica y pantallas (como calculadoras financieras). Son ideales para escenarios con bajo presupuesto y tiempos de entrega agresivos (30 días)."
+  },
+  {
+    "id": 29,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "A solution architect needs to create a segment of \"High Value Customers\". They define this as anyone who qualifies for the existing Platinum Loyalty segment OR anyone who has spent more than US$5,000. What is the most efficient way to build this?",
+    "opciones": {
+      "A": "Create two separate segments and join them together in a Tableau dashboard for activation.",
+      "B": "Build a calculated insight that joins both conditions and use that as the only filter in a new segment.",
+      "C": "Use a nested segment for \"Platinum Loyalty\" and add a separate container for the minimum spend with an OR operator.",
+      "D": "Create a waterfall segment, prioritizing the \"Platinum Loyalty\" group first and the \"High Spender\" group second."
+    },
+    "respuesta": "C",
+    "explicacion": "La reutilización de audiencias es una mejor práctica clave. Al anidar un segmento preexistente (Nested Segment) y añadir un bloque contenedor separado para la métrica económica utilizando el operador lógico 'OR', se consolida el criterio con la máxima eficiencia de procesamiento."
+  },
+  {
+    "id": 30,
+    "categoria": "Data Modeling and Harmonization",
+    "pregunta": "A Data 360 Consultant is performing a source system inventory for Northern Trail Outfitters (NTO). During the review of the standard data model, the consultant identifies several business-specific fields in the source system that do not have a corresponding field in the standard data model objects (DMOs). Following best practices for mapping preparation, which action should the consultant take?",
+    "opciones": {
+      "A": "Extend the relevant standard DMOs by adding custom fields to accommodate the missing data.",
+      "B": "Ignore the business-specific fields and map only the fields that exist in the standard DMOs.",
+      "C": "Create a new custom DMO for every business-specific field identified in the source system.",
+      "D": "Map the business-specific fields to the \"Other\" category to avoid modifying the standard model."
+    },
+    "respuesta": "A",
+    "explicacion": "Cuando el Modelo de Información de la Nube (CIM) estándar no cubre campos muy específicos del negocio, la práctica recomendada es extender el Objeto de Modelo de Datos (DMO) estándar añadiéndole campos personalizados (Custom Fields), manteniendo la armonización sin multiplicar innecesariamente los objetos."
+  },
+  {
+    "id": 31,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "A Data 360 Consultant for a high-growth retail brand is configuring the ingestion of customer behavioral data from a mobile application. The brand requires that the raw, unmodified data be stored exactly as it appears in the source system before any mapping or transformations occur to maintain a historical record of the transmission. Which object serves as the container of this source data in Data 360?",
+    "opciones": {
+      "A": "Calculated Insight Object",
+      "B": "Data Model Object",
+      "C": "Party Identification Object",
+      "D": "Data Lake Object"
+    },
+    "respuesta": "D",
+    "explicacion": "El Objeto del Lago de Datos (DLO - Data Lake Object) es el contenedor de aterrizaje primario en Data Cloud. Su función exclusiva es almacenar la réplica exacta, cruda y sin modificaciones de los datos procedentes del sistema de origen antes de aplicar mapeos o armonizaciones."
+  },
+  {
+    "id": 32,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "A data source does not have a field that can be designated as a primary key. What should the Data 360 Consultant do?",
+    "opciones": {
+      "A": "Use the default primary key recommended by Data 360.",
+      "B": "Remove duplicates from the data source and then select a primary key.",
+      "C": "Select a field as a primary key and then add a key qualifier.",
+      "D": "Create a composite key by combining two or more source fields through a formula field."
+    },
+    "respuesta": "D",
+    "explicacion": "Toda corriente de datos (Data Stream) requiere una llave primaria única. Si el archivo origen carece de ella, la mejor práctica declarativa es forjar una llave compuesta (Composite Key) utilizando un campo de fórmula de tipo texto para concatenar dos o más columnas que identifiquen unívocamente el registro."
+  },
+  {
+    "id": 33,
+    "categoria": "Configuration and Setup",
+    "pregunta": "A Data 360 Consultant is attempting to configure Data 360 in an existing Developer Pro sandbox that was refreshed prior to the organization purchasing Data 360 licenses. Although the consultant has the Data 360 Admin permission set assigned in production, they cannot see the Data 360 Setup menu or the Data Spaces configuration options in the sandbox. Which action should the consultant take to resolve this issue?",
+    "opciones": {
+      "A": "Refresh the sandbox immediately to pull the new metadata and license counts from production.",
+      "B": "Navigate to Company Information in the sandbox and select Match Production Licenses.",
+      "C": "Update the Contract Management settings in the sandbox to toggle the Data 360 Features switch to enabled.",
+      "D": "Manually create the Data 360 Admin permission set in the sandbox to match the production configuration"
+    },
+    "respuesta": "B",
+    "explicacion": "Cuando se adquieren nuevas licencias o características en producción, los sandboxes antiguos no las ven reflejadas de inmediato. En lugar de realizar un refresco completo y perder datos de prueba, el comando 'Match Production Licenses' (Igualar licencias de producción) en la sección Información de la Compañía actualiza los conteos de inmediato."
+  },
+  {
+    "id": 34,
+    "categoria": "Analytics, Insights and Semantic Layer",
+    "pregunta": "A customer is interested in tracking their Average Time To Close for Service Cloud cases. They are looking for a flexible solution that provides near real-time reporting and allows different teams to review the data across the relevant dimensions for that team coming from Sales, Service, Marketing, and Commerce Clouds. Which solution meets the customer's needs?",
+    "opciones": {
+      "A": "Data Model Object (DMO) Formula Fields",
+      "B": "Service Cloud Reports",
+      "C": "Calculated Insights",
+      "D": "Semantic Model Metrics"
+    },
+    "respuesta": "D",
+    "explicacion": "Para definir métricas estandarizadas complejas y transversales que deban ser consultadas dinámicamente bajo múltiples dimensiones por diferentes herramientas y nubes de forma flexible, la arquitectura de Data Cloud implementa la capa semántica mediante las Métricas del Modelo Semántico (Semantic Model Metrics)."
+  },
+  {
+    "id": 35,
+    "categoria": "Healthcare and Industry Use Cases",
+    "pregunta": "What is a Data 360 use case for improving the patient experience in the Healthcare and Life Sciences sector?",
+    "opciones": {
+      "A": "Activating a Unified Health Score to provide a holistic view of patient wellness and engagement",
+      "B": "Managing the payroll of visiting physicians via a custom mobile app",
+      "C": "Using data to predict the best location for which hospital the patient should visit",
+      "D": "Automating the retail checkout process in hospital gift shops"
+    },
+    "respuesta": "A",
+    "explicacion": "En el sector salud (Health Cloud), unificar expedientes médicos, datos de dispositivos portátiles e interacciones en un perfil único permite generar y activar una 'Puntuación de Salud Unificada' (Unified Health Score) para ofrecer medicina preventiva e interacciones hiper-personalizadas."
+  },
+  {
+    "id": 36,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "Northern Trail Outfitters uploads new customer data to an Amazon S3 bucket on a daily basis to be ingested in Data 360. Based on this, a calculated insight is created that shows the total spend per customer in the last 30 days. In which sequence should each process be run to ensure that freshly imported data is ready and available to use for any segment?",
+    "opciones": {
+      "A": "Calculated Insight > Refresh Data Stream > Identity Resolution",
+      "B": "Refresh Data Stream > Calculated Insight > Identity Resolution",
+      "C": "Refresh Data Stream > Identity Resolution > Calculated Insight",
+      "D": "Identity Resolution > Refresh Data Stream > Calculated Insight"
+    },
+    "respuesta": "C",
+    "explicacion": "El orden cronológico lógico para el procesamiento batch en Data Cloud es: 1) Ingerir y actualizar los datos crudos (Refresh Data Stream). 2) Agrupar y resolver las llaves de coincidencia para forjar los perfiles unificados (Identity Resolution). 3) Correr los cálculos agregados agregando los datos consolidados finales (Calculated Insight)."
+  },
+  {
+    "id": 37,
+    "categoria": "Zero Copy, Federation and Data Sharing",
+    "pregunta": "A Data 360 Consultant has a large historical dataset stored in Snowflake as parquet files in an object store. The consultant needs to run heavy analytics queries periodically, with high throughput but not necessarily real-time needs. Which Data 360 pattern is most appropriate?",
+    "opciones": {
+      "A": "Query federation without acceleration (Live or Direct Access)",
+      "B": "Ingest data into Data 360 as a data lake object (DLO)",
+      "C": "File federation",
+      "D": "Query federation with acceleration (Caching)"
+    },
+    "respuesta": "D",
+    "explicacion": "Para realizar consultas analíticas pesadas sobre almacenes de datos externos (como Snowflake) optimizando el rendimiento y minimizando costos de cómputo en consultas recurrentes no reales, se recomienda utilizar la Federación de Consultas con Aceleración (Query Federation with Acceleration), lo que genera un almacenamiento en caché temporal en Data Cloud."
+  },
+  {
+    "id": 38,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "A customer has a requirement to receive a notification whenever an activation fails for a particular segment. Which feature should the Data 360 Consultant use to solution for this use case?",
+    "opciones": {
+      "A": "Activation alert",
+      "B": "Flow",
+      "C": "Dashboard",
+      "D": "Report"
+    },
+    "respuesta": "B",
+    "explicacion": "Data Cloud emite Eventos de Plataforma (Platform Events) ante fallos del sistema. Capturar el evento de error de una activación y canalizarlo para disparar notificaciones por correo o Slack de forma automática e inmediata se resuelve utilizando Salesforce Flow (Flow Builder)."
+  },
+  {
+    "id": 39,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "A Data 360 Consultant created a calculated insight that can be seen when 'Segmenting On' Individuals on the segmentation canvas but not Unified Individual. What is the reason for this?",
+    "opciones": {
+      "A": "The consultant doesn't have the correct permissions to see the calculated insight for Unified Individual segments.",
+      "B": "The calculated insight is missing a relationship to the Unified Individual data model object (DMO).",
+      "C": "The data space for the Unified Individual is different than the Individual data model object (DMO).",
+      "D": "Calculated insights can't be used for the Unified Individual data model object (DMO)."
+    },
+    "respuesta": "B",
+    "explicacion": "Para que una métrica calculada esté disponible como filtro al momento de crear segmentos apuntando al objeto unificado (Unified Individual), la arquitectura del Calculated Insight debe incluir explícitamente una relación o mapeo que la vincule a la tabla del Unified Individual DMO."
+  },
+  {
+    "id": 40,
+    "categoria": "Agentforce AI",
+    "pregunta": "A customer service manager wants to implement generative AI in Salesforce to help agents answer customer inquiries. They are concerned that the AI might give generic or inaccurate responses if it doesn't have access to the company's internal knowledge and data. Which Salesforce Data 360 feature should help ensure the AI provides accurate, contextually relevant answers by using internal data?",
+    "opciones": {
+      "A": "Disabling vector embeddings to increase the accuracy of generative model processing",
+      "B": "Automatically converting unstructured data into structured Salesforce records",
+      "C": "Retrieval Augmented Generation (RAG) to ground AI prompts with relevant internal data",
+      "D": "Replacing all structured data with AI-generated insights"
+    },
+    "respuesta": "C",
+    "explicacion": "La Generación Aumentada por Recuperación (RAG - Retrieval Augmented Generation) es la técnica de IA que permite a Data Cloud buscar información relevante en sus bases de datos internas (artículos de conocimiento, datos del cliente) e inyectarla en el prompt de la IA para condicionar y fundamentar (Grounding) su respuesta con datos verídicos."
+  },
+  {
+    "id": 41,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "Northern Trail Outfitters wants to compute recency, frequency, monetary (RFM) scores on its unified individuals in order to use it in Marketing Cloud Engagement. What is the best way to achieve this goal?",
+    "opciones": {
+      "A": "Include the Calculated Insight attribute in activation.",
+      "B": "Use copy fields to show the calculated insight.",
+      "C": "Add the score to a related list.",
+      "D": "Import the score to Marketing Cloud via SFTP."
+    },
+    "respuesta": "A",
+    "explicacion": "Una vez calculado el score RFM mediante un 'Calculated Insight', el valor se puede inyectar como un atributo adicional del perfil (Activation Attribute) durante el proceso de Activación, permitiendo que Marketing Cloud Engagement reciba y use esa métrica para personalización avanzada."
+  },
+  {
+    "id": 42,
+    "categoria": "Lifecycle Management and Deployment",
+    "pregunta": "A data architect has deployed an inbound change set containing a data kit into a new Salesforce Production org. Although the deployment status shows \"Succeeded\", the architect notices that the specific data stream configurations and calculated insights included in the kit are not yet active or visible in the Data 360 functional tabs. What is the next required action the architect must perform to fully implement the configurations within the data kit?",
+    "opciones": {
+      "A": "Install the data kit from the Data 360 Setup menu to map and activate the components.",
+      "B": "Re-upload the outbound change set from the source org to clear the metadata cache.",
+      "C": "Run a \"Full Refresh\" on all data streams within the newly deployed change set.",
+      "D": "Use the Salesforce Package Manager to verify the installation status of the components."
+    },
+    "respuesta": "A",
+    "explicacion": "Desplegar un Data Kit mediante Change Sets solo transfiere los archivos de metadatos al entorno destino. Para que las estructuras (Data Streams, Mapeos, Insights) cobren vida y queden operativas, el administrador debe ingresar explícitamente al menú de configuración de Data Cloud e 'Instalar' (Install) el paquete."
+  },
+  {
+    "id": 43,
+    "categoria": "Data 360 Fundamentals",
+    "pregunta": "A Data 360 Consultant is planning to use Data Explorer to examine Data 360 data. Which data is the consultant able to examine in Data Explorer?",
+    "opciones": {
+      "A": "Activations, data lake objects, calculated insights",
+      "B": "Data lake objects, data model objects, calculated insights",
+      "C": "Segments, data model objects, calculated insights",
+      "D": "Data source objects, data lake objects, data model objects"
+    },
+    "respuesta": "B",
+    "explicacion": "Data Explorer es la herramienta de inspección visual de datos crudos en Data Cloud. Permite examinar los registros tal como llegan de origen (Data Lake Objects - DLO), después de ser armonizados (Data Model Objects - DMO) y tras ser agregados estadísticamente (Calculated Insights)."
+  },
+  {
+    "id": 44,
+    "categoria": "Data 360 Fundamentals",
+    "pregunta": "Cumulus Financial (CF) wants to target loyal and engaged customers. When a platinum-tier customer visits their investment pages more than three times in a 24-hour period, CF wants to immediately send an email that offers a private consultation. What should a Data 360 Consultant recommend for this business requirement?",
+    "opciones": {
+      "A": "Create a segment with standard publish to Marketing Cloud Engagement.",
+      "B": "Create a streaming insight with a data action to Marketing Cloud Engagement.",
+      "C": "Create a segment with rapid publish to Marketing Cloud Engagement.",
+      "D": "Create a calculated insight with a data action to Marketing Cloud Engagement."
+    },
+    "respuesta": "B",
+    "explicacion": "Cuando el negocio exige una reacción inmediata ante un comportamiento en vivo (sub-quince minutos o inmediato), se debe configurar un 'Streaming Insight' para calcular la ventana de interacciones en tiempo real, enlazado directamente a una 'Acción de Datos' (Data Action) para disparar el trigger de envío hacia Marketing Cloud de forma síncrona."
+  },
+  {
+    "id": 45,
+    "categoria": "Zero Copy, Federation and Data Sharing",
+    "pregunta": "A global beverage company (data provider) and a sports media network (data consumer) are collaborating in a Data 360 clean room to identify high-value partnership opportunities. The parties decide to use the segment overlap use case template to determine how many of the beverage company's Premium Loyalty Members are also active subscribers of the sports network, without exposing raw personally identifiable information (PII). When configuring the segment overlap template, which requirement must be met to allow the results to be filtered by specific demographics like \"Region\" or \"Age Group\" in the final output?",
+    "opciones": {
+      "A": "The Region and Age Group fields must be set as foreign keys in the data model objects (DMOs) of both organizations.",
+      "B": "Both parties must map their \"Region\" and \"Age Group\" data to a shared calculated insight before joining the clean room.",
+      "C": "The Data 360 Consultant must configure a many-to-many relationship between the two search index data model objects (DMOs).",
+      "D": "The data provider must include these additional fields as segmentation attributes within the use case template configuration."
+    },
+    "respuesta": "D",
+    "explicacion": "En las salas limpias de datos (Data Clean Rooms) basadas en plantillas de superposición de segmentos, para que el reporte resultante permita hacer desgloses o filtros por atributos secundarios (como edad o región), el proveedor de datos debe declarar e incluir explícitamente esas columnas como atributos de segmentación en la configuración de la plantilla."
+  },
+  {
+    "id": 46,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "Which statement about Data 360's Web and Mobile Application Connector is true?",
+    "opciones": {
+      "A": "Any data streams associated with the connector will be automatically deleted upon deleting the app from Data 360 Setup.",
+      "B": "The connector schema can be updated to delete an existing field.",
+      "C": "A standard schema containing event, profile, and transaction data is created at the time the connector is configured.",
+      "D": "The Tenant Specific Endpoint is auto-generated in Data 360 when setting the connector."
+    },
+    "respuesta": "D",
+    "explicacion": "Al dar de alta y configurar el conector para Aplicaciones Web y Móviles (Sistemas SDK), Data Cloud autogenera un Punto de Extremo Específico del Inquilino (Tenant Specific Endpoint - TSE). Esta URL única es la que deben usar los desarrolladores en el código de la app móvil para apuntar y enviar los eventos hacia el entorno."
+  },
+  {
+    "id": 47,
+    "categoria": "Security, Privacy and Governance",
+    "pregunta": "How does Data 360 handle an individual's Right to Be Forgotten?",
+    "opciones": {
+      "A": "Deletes the records from all data source objects, and any downstream data model objects are updated at the next scheduled ingestion",
+      "B": "Deletes the specified Individual and records from any data model object/data lake object related to the Individual",
+      "C": "Deletes the specified Individual record and its Unified Individual Link record",
+      "D": "Deletes the specified Individual and records from any data source object mapped to the Individual data model object"
+    },
+    "respuesta": "B",
+    "explicacion": "El cumplimiento del Derecho al Olvido (Borrado GDPR/Data Deletion) en Data Cloud elimina físicamente el registro del Individuo especificado y ejecuta un borrado en cascada sobre todas las tablas del lago (DLO) y del modelo (DMO) que estén directamente vinculadas a ese ID de perfil unificado."
+  },
+  {
+    "id": 48,
+    "categoria": "Data Modeling and Harmonization",
+    "pregunta": "A Data 360 Consultant at a global travel company has completed the mapping of several data lake objects (DLOs) to the data model objects (DMOs) for a new loyalty program. Before building segments, the consultant needs to verify that the join keys between the Unified Individual and the custom Loyalty Ledger DMO are returning the expected results. Which tool should the consultant use to execute a manual SQL query to preview these results?",
+    "opciones": {
+      "A": "The Data 360 Calculated Insights Builder",
+      "B": "The Data 360 Query Editor",
+      "C": "The Data 360 Metadata Search",
+      "D": "The Data 360 Data Explorer"
+    },
+    "respuesta": "B",
+    "explicacion": "El 'Editor de Consultas' (Query Editor) es el espacio interactivo diseñado para que los arquitectos ejecuten sentencias manuales SQL o SOQL directas contra el modelo de datos unificado, permitiendo validar relaciones de unión (JOINs) y previsualizar tablas."
+  },
+  {
+    "id": 49,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "Northern Trail Outfitters has customer data in three separate systems. Each system uses a different unique internal identifier for the same individual. However, all three systems consistently capture a common Loyalty Program ID for every customer. Which feature should a Data 360 Consultant use to link these records into a single Unified Profile based on this shared external ID?",
+    "opciones": {
+      "A": "Use the Internal Organization match rule.",
+      "B": "Create an Exact Name and Email match rule.",
+      "C": "Implement the Exact Phone Number match rule.",
+      "D": "Configure a Party Identification match rule."
+    },
+    "respuesta": "D",
+    "explicacion": "Para forzar la unificación de perfiles utilizando identificadores externos compartidos (como números de fidelidad, IDs fiscales o pasaportes) en lugar de datos de contacto comunes (nombre/correo), la arquitectura de Identity Resolution exige configurar una regla de coincidencia basada en la Identificación de Terceros o 'Party Identification'."
+  },
+  {
+    "id": 50,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "Cumulus Financial wants its service reps to view all cases associated with a Unified Individual on a contact record. Which feature should a Platform Administrator consider for this use case?",
+    "opciones": {
+      "A": "Related List Enrichment",
+      "B": "Segment Activation",
+      "C": "Copy Field Enrichment",
+      "D": "Data Action"
+    },
+    "respuesta": "A",
+    "explicacion": "Para embeber y enlistar cronológicamente subconjuntos masivos relacionados procedentes de las tablas unificadas de Data Cloud (como mostrar todos los casos del cliente consolidado) directamente en la interfaz visual de una página de Contacto en CRM, se utiliza la herramienta 'Related List Enrichment'."
+  },
+  {
+    "id": 51,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "What does the Source Sequence reconciliation rule do in Identity Resolution?",
+    "opciones": {
+      "A": "Sets the priority of specific data sources when building attributes in a unified profile, such as a first or last name",
+      "B": "Includes data from sources where the data is most frequently occurring",
+      "C": "Identifies which data sources should be used in the process of reconciliation by prioritizing the most recently updated data source",
+      "D": "Identifies which individual records should be merged into a unified profile by setting a priority for specific data sources"
+    },
+    "respuesta": "A",
+    "explicacion": "Las reglas de reconciliación definen qué valor sobrevive en el perfil unificado cuando hay conflicto de datos. La regla de Secuencia de Origen (Source Sequence) permite al administrador ordenar jerárquicamente las fuentes (ej: establecer que el nombre de pila de Salesforce CRM siempre venza al nombre procedente de Marketing Cloud)."
+  },
+  {
+    "id": 52,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "A client wants to bring in loyalty data from a custom object in Salesforce CRM that contains a point balance for accrued hotel points and airline points within the same record. The client wants to split these point systems into two separate records for better tracking and processing. What should a Data 360 Consultant recommend in this scenario?",
+    "opciones": {
+      "A": "Create a junction object in Salesforce CRM and modify the ingestion strategy.",
+      "B": "Use batch transforms to create a second data lake object.",
+      "C": "Clone the data source object.",
+      "D": "Create a data kit from the data lake object and deploy it to the same Data 360 org."
+    },
+    "respuesta": "B",
+    "explicacion": "Para segmentar o pivotar registros compuestos (un solo renglón origen que deba dar génesis a dos filas distintas en el modelo de datos), se utilizan las Transformaciones en Lote (Batch Transforms) o Streaming Data Transforms en la fase intermedia de ingestión para moldear un nuevo DLO expandido."
+  },
+  {
+    "id": 53,
+    "categoria": "Analytics, Insights and Semantic Layer",
+    "pregunta": "A lead architect needs to build a real-time Customer Health Dashboard in a custom web portal that displays a unified customer's recent purchase history (Engagement data) and their calculated loyalty score. Which API strategy is most appropriate to meet this requirement?",
+    "opciones": {
+      "A": "Use the Metadata API to retrieve the schema of the unified profile, then use a standard REST GET call on the Individual object.",
+      "B": "Use the Query API to send an SQL/SOQL-based request to join data to retrieve a comprehensive view.",
+      "C": "Use the Profile API because it is optimized for high-speed retrieval of unified profile attributes and calculated insights.",
+      "D": "Use the Ingestion API to push the dashboard requirements into a data stream to trigger a webhook."
+    },
+    "respuesta": "C",
+    "explicacion": "Para portales web o sistemas interactivos que requieran extraer la información del cliente unificado a velocidad extrema (sub-segundo), se debe invocar la API de Perfiles (Profile API / Calculated Insights API), la cual está optimizada para lecturas de clave-valor veloces en producción."
+  },
+  {
+    "id": 54,
+    "categoria": "Einstein Studio and AI",
+    "pregunta": "Northern Trail Outfitters (NTO) has a machine learning (ML) model trained externally in Amazon SageMaker to predict customer churn, and wants to use that model's inference inside Data 360 without duplicating data. What should NTO do to achieve this?",
+    "opciones": {
+      "A": "Use built-in Data 360 Calculated Insights.",
+      "B": "Consume the predictions from the external platform as a data lake object (DLO).",
+      "C": "Connect the trained model in Data 360 in Bring Your Own Model (BYOM).",
+      "D": "Use an out-of-the-box Einstein Studio customer churn predictive model."
+    },
+    "respuesta": "C",
+    "explicacion": "Einstein Studio soporta la filosofía Zero-Copy para Inteligencia Artificial. La estrategia 'Trae tu propio modelo' (BYOM - Bring Your Own Model) permite conectar el modelo externo de Amazon SageMaker de forma directa mediante APIs, sirviéndose de la data de Data Cloud para obtener las predicciones en vivo sin replicar tablas."
+  },
+  {
+    "id": 55,
+    "categoria": "Zero Copy, Federation and Data Sharing",
+    "pregunta": "Which statement about query federation in Data 360 is true?",
+    "opciones": {
+      "A": "Query federation requires file-based data lakes such as Iceberg.",
+      "B": "Data 360 executes queries using its own compute engine, regardless of the external system.",
+      "C": "Query federation pushes SQL queries to the external system's compute layer.",
+      "D": "Query federation requires data to be first converted to parquet format."
+    },
+    "respuesta": "C",
+    "explicacion": "La Federación de Consultas (Zero Copy / Salesforce Connect) es eficiente porque no extrae data masiva para procesarla localmente. Lo que hace es delegar; empuja (pushes) la sentencia SQL traducida directamente hacia la capa de cómputo del sistema externo (ej. Snowflake o Databricks), recibiendo de regreso únicamente el resultado final resumido."
+  },
+  {
+    "id": 56,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "Northern Trail Outfitters (NTO) wants to create a segment where a unique record is created in the published audience for every transaction a customer completes. If a customer makes three separate purchases, the resulting segment should contain three distinct entries for that customer to allow for transaction-specific messaging. All transactions are mapped to the Sales Order data model object (DMO), and NTO is using Identity Resolution to unify customers on the Unified Individual DMO. Which configuration should a Data 360 Consultant use to meet this requirement?",
+    "opciones": {
+      "A": "Segment on the Individual DMO",
+      "B": "Segment on a calculated insight based on Sales Orders",
+      "C": "Segment on the Sales Order DMO",
+      "D": "Segment on the Unified Individual DMO"
+    },
+    "respuesta": "C",
+    "explicacion": "Por diseño base, segmentar apuntando al objeto unificado (Unified Individual) colapsará las salidas a una fila por persona. Si el objetivo comercial exige una fila por transacción (permitiendo el envío de correos independientes por cada compra efectuada), el objeto raíz sobre el cual se debe construir el segmento debe ser el DMO de transacciones directo (Sales Order DMO)."
+  },
+  {
+    "id": 57,
+    "categoria": "Data Modeling and Harmonization",
+    "pregunta": "A customer has a custom Customer_Email_c object related to the standard Contact object in Salesforce CRM. This custom object stores the email address for a Contact that they want to use for activation. To which data model object should the customer map the email object to?",
+    "opciones": {
+      "A": "Custom Customer_Email_c object",
+      "B": "Contact",
+      "C": "Contact Point Email",
+      "D": "Individual"
+    },
+    "respuesta": "C",
+    "explicacion": "En el Modelo de Información de Cloud (CIM) de Data Cloud, todas las direcciones físicas de correo electrónico destinadas a recibir comunicaciones operativas o campañas de marketing deben mapearse de forma obligatoria y estricta hacia el objeto estandarizado denominado 'Contact Point Email'."
+  },
+  {
+    "id": 58,
+    "categoria": "Lifecycle Management and Deployment",
+    "pregunta": "A Data 360 Consultant is explaining the behavior of Data 360 sandboxes to project stakeholders. The stakeholders want to know what data is retained or copied during a standard metadata initialization or transfer.",
+    "opciones": {
+      "A": "Every single row of historical engagement data from the last 10 years",
+      "B": "A direct and real-time connection to the production data lake for live querying",
+      "C": "All customer credit card information and sensitive personal passwords",
+      "D": "Only the metadata, such as data model object (DMO) definitions and mappings"
+    },
+    "respuesta": "D",
+    "explicacion": "Al replicar, transferir o clonar configuraciones hacia entornos de prueba o sandboxes estándar en el ciclo de vida ALM, Salesforce transporta única y exclusivamente la capa de arquitectura lógica o Metadatos (definiciones de objetos DMO, mapeos, fórmulas e insights), dejando el contenedor de datos totalmente vacío de registros reales."
+  },
+  {
+    "id": 59,
+    "categoria": "Data Modeling and Harmonization",
+    "pregunta": "A global marketing team is using Salesforce Data 360 to create highly targeted segments. Many of the team members are new to the organization and are unfamiliar with the data model and attributes, such as various Product Category names. This lack of data knowledge is causing delays, as users must frequently ask the data team for assistance in identifying the proper segmentation criteria. Which configuration should a Data 360 Consultant implement on the data model object (DMO) so that these users can see and select from the actual data values present in the system while building their segments?",
+    "opciones": {
+      "A": "Create a data kit and share a list of values across all marketing users.",
+      "B": "Create a Data 360 Report for each DMO that counts how many times each value appears for a given attribute.",
+      "C": "Utilize Data Explorer or Query Editor to identify common attribute values.",
+      "D": "Enable Value Suggestion for text fields on DMOs."
+    },
+    "respuesta": "D",
+    "explicacion": "La plataforma incorpora una facilidad ergonómica llamada 'Sugerencia de Valores' (Value Suggestion). Al activarla sobre los atributos de tipo texto en la configuración del DMO, el diseñador de segmentos indexa los valores existentes reales en el sistema y se los despliega automáticamente al usuario en forma de autocompletado interactivo."
+  },
+  {
+    "id": 60,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "Cumulus Financial created a segment called High Investment Balance Customers. This is a foundational segment that includes several segmentation criteria the marketing team should consistently use. What should the Data 360 Consultant recommend to ensure this consistency when the team creates future, more refined segments?",
+    "opciones": {
+      "A": "Create new segments using nested segments.",
+      "B": "Package High Investment Balance Customers in a data kit.",
+      "C": "Create new segments by cloning High Investment Balance Customers.",
+      "D": "Create a High Investment Balance calculated insight."
+    },
+    "respuesta": "A",
+    "explicacion": "Para salvaguardar la consistencia de criterios base y ahorrar reprocesamientos, se deben utilizar los Segmentos Anidados (Nested Segments). Esto permite arrastrar un segmento base como filtro inicial dentro de una audiencia nueva, construyendo ramificaciones más profundas a partir de ese bloque central."
+  },
+  {
+    "id": 61,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "A Data 360 Consultant needs to unify records from a legacy billing system and a CRM. Both systems use different internal IDs, but both store a common Customer_Tax_ID. How should the consultant ensure these records can be matched in an identity resolution ruleset?",
+    "opciones": {
+      "A": "Map both the billing ID and CRM ID to the Individual Primary Key field.",
+      "B": "Map the Customer_Tax_ID from both systems to the Party Identification object with a consistent Identification Name.",
+      "C": "Create a reconciliation rule that gives the CRM data stream a higher priority than the billing system.",
+      "D": "Configure a fuzzy match rule on the Individual object using the Customer_Tax_ID attribute."
+    },
+    "respuesta": "B",
+    "explicacion": "Al igual que en un escenario resuelto previamente; cuando existen identificadores únicos de negocio (como RFC, Número de Pasaporte o Tax ID) que cruzan múltiples sistemas, el mapeo debe apuntar al objeto 'Identificación de Partes' (Party Identification). Asegurar que el 'Nombre de Identificación' sea consistente permite al motor de resolución fusionar los perfiles usando una regla de coincidencia exacta."
+  },
+  {
+    "id": 62,
+    "categoria": "Data 360 Fundamentals",
+    "pregunta": "Which tool should users use to visualize and analyze unified customer data in Data 360?",
+    "opciones": {
+      "A": "Salesforce CLI",
+      "B": "Heroku",
+      "C": "Intelligence Reports Advanced",
+      "D": "Tableau"
+    },
+    "respuesta": "D",
+    "explicacion": "La principal plataforma analítica y de visualización empresarial integrada de forma nativa para consumir y explorar visualmente los volúmenes de datos armonizados y unificados desde Data Cloud (Data 360) es Tableau."
+  },
+  {
+    "id": 63,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "Northern Trail Outfitters wants to run a multi-step marketing campaign where customers receive different offers based on a strict priority hierarchy. The marketing team needs to ensure that each customer is assigned to only one segment to avoid sending overlapping promotions. Which feature should a Data 360 Consultant recommend to meet these requirements?",
+    "opciones": {
+      "A": "Exclusion Rules",
+      "B": "Nested Segment Logic",
+      "C": "Waterfall Segmentation",
+      "D": "Sequential Segment Membership"
+    },
+    "respuesta": "C",
+    "explicacion": "La Segmentación en Cascada (Waterfall Segmentation) está diseñada específicamente para priorizar audiencias de forma jerárquica. Permite evaluar a un individuo bajo múltiples criterios y asignarlo exclusivamente a la campaña de mayor prioridad en la que califique, excluyéndolo automáticamente de los segmentos inferiores."
+  },
+  {
+    "id": 64,
+    "categoria": "Analytics, Insights and Semantic Layer",
+    "pregunta": "A Data 360 Consultant needs to provide real-time, multidimensional analytics for a derived insight, \"Net Profit\", to be used within Tableau Next. The requirements specify that the metrics must be as up to date as possible while allowing users to dynamically filter by region, period, and product category. Which approach should the consultant take?",
+    "opciones": {
+      "A": "Define a real-time data graph.",
+      "B": "Create a calculated insight using SQL.",
+      "C": "Create a calculated field in the semantic layer.",
+      "D": "Configure a streaming transform."
+    },
+    "respuesta": "C",
+    "explicacion": "Para habilitar filtros dinámicos (slice-and-dice) en tiempo real en herramientas analíticas como Tableau sin esperar los tiempos de procesamiento estático de un Calculated Insight, las métricas deben construirse directamente en la Capa Semántica (Semantic Layer) como Campos Calculados (Calculated Fields / Metrics)."
+  },
+  {
+    "id": 65,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "Northern Trail Outfitters (NTO) wants to connect its B2C Commerce data with Data 360 and bring 2 years of transactional history into Data 360. What should NTO use to achieve this?",
+    "opciones": {
+      "A": "Sales Order object ingestion",
+      "B": "Sales Product object ingestion",
+      "C": "B2C Commerce Starter Bundles plus a custom extract",
+      "D": "B2C Commerce Starter Bundles"
+    },
+    "respuesta": "C",
+    "explicacion": "El conector estándar de B2C Commerce (Starter Bundles) transfiere datos de comercio (órdenes, clientes, productos), pero típicamente tiene límites de retroactividad (historial corto, ej: 30 días). Para extraer e inyectar 2 años de registros históricos pesados, se debe apoyar combinando el paquete base con una extracción personalizada (Custom Extract / B2C API)."
+  },
+  {
+    "id": 66,
+    "categoria": "Data 360 Fundamentals",
+    "pregunta": "An organization wants to give users the ability to identify and select text attributes from a picklist of options. Which Data 360 feature should help with this use case?",
+    "opciones": {
+      "A": "Data harmonization",
+      "B": "Value suggestion",
+      "C": "Transformation formulas",
+      "D": "Global picklists"
+    },
+    "respuesta": "B",
+    "explicacion": "Iteración de la pregunta 59; La 'Sugerencia de Valores' (Value Suggestion) en Data Cloud indexa el contenido de los campos de texto, transformando un lienzo de escritura libre en un buscador autocompletable o 'picklist' visual para ayudar a los usuarios al armar segmentos."
+  },
+  {
+    "id": 67,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "A Data 360 Consultant is configuring an activation for a segment created from the Unified Individual object to be sent to a Loyalty Cloud activation target. They would like to include the Loyalty Program Tier for personalization, but this field is stored in a separate Loyalty Program Member data model object (DMO) that was not used in the initial segment filters. Which feature should the consultant use during the activation setup to include this external identifier in the exported payload?",
+    "opciones": {
+      "A": "Calculated insights to join the Loyalty Program Tier to the Unified Individual prior to segmentation",
+      "B": "Contact point priority to rank the Loyalty Program Tier above the standard Individual ID",
+      "C": "Activation membership to select the Loyalty Program Member DMO and its associated fields",
+      "D": "Data stream mappings to re-map the Loyalty Program Tier as a secondary key on the Individual object"
+    },
+    "respuesta": "C",
+    "explicacion": "Al configurar una Activación (Activation), el administrador puede seleccionar DMOs adyacentes a través de la funcionalidad de Atributos Relacionados (Related Attributes / Activation Membership). Esto enriquece el archivo exportado adjuntándole columnas provenientes de otras tablas aunque estas no se hayan usado para filtrar el segmento original."
+  },
+  {
+    "id": 68,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "A Data 360 Consultant recently discovered that their Identity Resolution process is matching individuals who share email addresses or phone numbers but are not actually the same individual. What should the consultant do to address this issue?",
+    "opciones": {
+      "A": "Modify the existing ruleset to use fewer matching rules, run the ruleset and review the updated results, and then adjust as needed until the individuals are matching correctly.",
+      "B": "Modify the existing ruleset with stricter matching criteria, run the ruleset and review the updated results, and then adjust as needed until the individuals are matching correctly.",
+      "C": "Create and run a new ruleset with fewer matching rules, compare the two rulesets to review and verify the results, and then migrate to the new ruleset once approved.",
+      "D": "Create and run a new ruleset with stricter matching criteria, compare the two rulesets to review and verify the results, and then migrate to the new ruleset once approved."
+    },
+    "respuesta": "D",
+    "explicacion": "Como mejor práctica de gobernanza y seguridad, nunca se deben alterar y sobrescribir directamente las Reglas de Resolución de Identidad que están operando en producción. En su lugar, se debe crear un Conjunto de Reglas Nuevo (New Ruleset) más estricto, ejecutarlo en paralelo, comparar las tasas de consolidación con la versión antigua, y solo migrar la operación una vez validado."
+  },
+  {
+    "id": 69,
+    "categoria": "Einstein Studio and AI",
+    "pregunta": "A Data 360 Consultant needs to build a model on Einstein Studio to predict the time-to-close of an opportunity brought into Data 360 from CRM. Based on the supported model types, which statement is true?",
+    "opciones": {
+      "A": "The consultant should use a Multiclass Classification model to bucket the time-to-close into specifications.",
+      "B": "The consultant should use a Binary Classification model to determine if the time-to-close is long or short.",
+      "C": "The consultant should use a Multiclass Classification model because the outcome is represented as text data.",
+      "D": "The consultant should use a Regression model because the target outcome is a numeric measure."
+    },
+    "respuesta": "D",
+    "explicacion": "En el ecosistema de Machine Learning de Einstein Studio, cuando la variable objetivo a predecir es un valor cuantitativo numérico continuo (como ingresos o 'Días para el Cierre/Time-to-close'), el algoritmo matemáticamente diseñado para resolver esta aproximación es el Modelo de Regresión (Regression Model)."
+  },
+  {
+    "id": 70,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "A Data 360 Consultant is building a segment to announce a new product launch for customers who have previously purchased black pants. How should the consultant place the attributes for product color and product type from the Order Product object to meet this criteria?",
+    "opciones": {
+      "A": "Place the attributes for product color and product type in a single container.",
+      "B": "Place the attribute for product color in one container and the attribute for product type in another container.",
+      "C": "Place an attribute for the \"black pants\" calculated insight to dynamically apply.",
+      "D": "Place the attributes for product color and product type as direct attributes."
+    },
+    "respuesta": "A",
+    "explicacion": "Para asegurar que las condiciones apliquen sobre la misma fila o transacción (evitando que el sistema acepte clientes que compraron 'pantalones rojos' y 'camisas negras' en distintas órdenes), tanto el Color='Negro' como el Producto='Pantalones' deben enjaularse dentro del Mismo Contenedor de Segmentación."
+  },
+  {
+    "id": 71,
+    "categoria": "Einstein Studio and AI",
+    "pregunta": "When preparing to build a predictive AI model in Einstein Studio using Data 360 data, which step is essential to ensure the model produces ethical and unbiased results?",
+    "opciones": {
+      "A": "Disabling all calculated insights before starting the training process",
+      "B": "Ensuring the training dataset contains at least 10 million records",
+      "C": "Auditing training data to identify which segments of the customer base are underrepresented",
+      "D": "Using only unstructured data to prevent pattern recognition"
+    },
+    "respuesta": "C",
+    "explicacion": "La IA Ética (Ethical AI) en Salesforce exige mitigar los sesgos algorítmicos. Auditar exhaustivamente la población de datos para descubrir si ciertas demografías o segmentos están sub-representados asegura que el modelo no genere conclusiones injustas o discriminatorias al ser entrenado."
+  },
+  {
+    "id": 72,
+    "categoria": "Data 360 Fundamentals",
+    "pregunta": "What is the primary functionality of Data 360?",
+    "opciones": {
+      "A": "To help users build a heat map using their data",
+      "B": "To automatically generate sales forecasts based on historical email patterns",
+      "C": "To unify and harmonize data from multiple sources to create a complete customer profile",
+      "D": "To create a master data management (MDM) strategy"
+    },
+    "respuesta": "C",
+    "explicacion": "El pilar fundacional y propósito principal de Data Cloud (Data 360) es la ingestión, armonización y unificación de datos desconectados de múltiples fuentes para amalgamar la 'Única Fuente de Verdad' y construir un Perfil Unificado Completo del cliente (Customer 360 View)."
+  },
+  {
+    "id": 73,
+    "categoria": "Einstein Studio and AI",
+    "pregunta": "Northern Trail Outfitters (NTO) is struggling with fragmented customer data across marketing, sales, and service systems. NTO decides to implement Data 360 to improve its customer strategy. How does Data 360 primarily help NTO solve this business challenge?",
+    "opciones": {
+      "A": "It archives historical transaction records for 10 years to meet regulatory data retention requirements.",
+      "B": "It creates automated weekly business intelligence dashboards to help managers forecast sales revenue.",
+      "C": "It unifies data into a single profile to provide personalized experiences across all touch points.",
+      "D": "It provides a data security layer that encrypts sensitive information to ensure global GDPR compliance."
+    },
+    "respuesta": "C",
+    "explicacion": "Redundancia intencional a la pregunta anterior. Frente a silos de datos fragmentados en múltiples nubes (Service, Sales, Marketing), la plataforma resuelve el caos uniendo y resolviendo las identidades para orquestar activaciones y experiencias hiper-personalizadas omnicanal."
+  },
+  {
+    "id": 74,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "A solution architect needs to create a segment of \"High Value Customers\". They define this as anyone who qualifies for the existing Platinum Loyalty segment OR anyone who has spent more than US $5,000. What is the most efficient way to build this?",
+    "opciones": {
+      "A": "Create a waterfall segment, prioritizing the \"Platinum Loyalty\" group first and the \"High Spender\" group second.",
+      "B": "Use a nested segment for \"Platinum Loyalty\" and add a separate container for the minimum spend within OR operator.",
+      "C": "Create two separate segments and join them together in a Tableau dashboard for activation.",
+      "D": "Build a calculated insight that joins both conditions and use that as the only filter in a new segment."
+    },
+    "respuesta": "B",
+    "explicacion": "Iteración clónica de la pregunta 29. La arquitectura más pulcra para consolidar condiciones usando criterios pre-establecidos es empalmar la lógica usando Segmentos Anidados (Nested Segments) y sumar las condiciones monetarias alternas en un bloque secundario utilizando la directiva inclusiva 'OR'."
+  },
+  {
+    "id": 75,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "What is a reason to create a formula when ingesting a data stream?",
+    "opciones": {
+      "A": "To concatenate files so they are ingested in the correct sequence",
+      "B": "To remove duplicate rows of data from the data stream",
+      "C": "To add a unique external identifier to an existing ruleset",
+      "D": "To transform a datetime field into a date field for use in data mapping"
+    },
+    "respuesta": "D",
+    "explicacion": "Los Campos de Fórmula (Formula Fields) que se aplican durante la ingesta a los DLOs están diseñados para limar y ajustar anomalías del origen al vuelo antes del mapeo final. Ejemplos de uso lícito incluyen casteos de tiempo (mutar DateTime a simple Date), forjar llaves compuestas o corregir tipografías (Mayúsculas/Minúsculas)."
+  },
+  {
+    "id": 76,
+    "categoria": "CRM Enrichment and Actions",
+    "pregunta": "What is a key requirement for a flow to be able to act on Data 360 data in near real time using a data action?",
+    "opciones": {
+      "A": "The data action must be mapped to a platform event that the flow is subscribed to.",
+      "B": "The Data 360 home instance must be in the same Salesforce CRM org.",
+      "C": "The flow must be active and the user must have the Data 360 Marketing Admin permission.",
+      "D": "The flow must be a screen flow embedded on the record page."
+    },
+    "respuesta": "A",
+    "explicacion": "Las 'Acciones de Datos' (Data Actions) en Data Cloud logran encender alertas y ejecutar labores a velocidad cuasi real en el CRM gracias a que emiten señales encriptadas bajo el protocolo de 'Eventos de Plataforma' (Platform Events). Por tanto, el Flujo Receptor debe estar arquitectónicamente configurado (Platform Event-Triggered Flow) para suscribirse, escuchar y cazar ese evento particular."
+  },
+  {
+    "id": 77,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "Northern Trail Outfitters (NTO) wants to send a promotional campaign to customers that have purchased within the past 6 months. The Data 360 Consultant creates a segment to meet this requirement. Now, NTO has brought an additional requirement to suppress customers who have made purchases within the last week. What should the consultant use to remove the recent customers?",
+    "opciones": {
+      "A": "Segmentation exclude rules",
+      "B": "Streaming insights",
+      "C": "Batch transforms",
+      "D": "Related attributes"
+    },
+    "respuesta": "A",
+    "explicacion": "Dentro de la interfaz del Canvas de Segmentación de Data Cloud, los contenedores lógicos proveen un apartado de 'Exclusión' (Exclude Rules / Exclusion Criteria). Este operador remueve sustractivamente y de inmediato al conjunto resultante interno del universo general de la campaña."
+  },
+  {
+    "id": 78,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "Cumulus Financial needs to create a composite key on an incoming data source that combines the fields Customer Region and Customer Identifier. Which formula function should a Data 360 Consultant use to create a composite key when a primary key is not available in a data stream?",
+    "opciones": {
+      "A": "COALESCE",
+      "B": "CONCAT",
+      "C": "COMBINE",
+      "D": "CAST"
+    },
+    "respuesta": "B",
+    "explicacion": "Al igual que evaluado en la pregunta 32, forjar una Llave Compuesta (Composite Key) dicta amarrar, fundir y soldar múltiples valores alfanuméricos en uno solo. La función que ejerce lícitamente esta unión textual de cadenas de caracteres durante la carga del DLO es `CONCAT()`."
+  },
+  {
+    "id": 79,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "Which permission setting should a Data 360 Consultant check if a custom Salesforce CRM object is not available in New Data Stream configuration?",
+    "opciones": {
+      "A": "Confirm the View All object permission is enabled in the source Salesforce CRM org.",
+      "B": "Confirm the Ingest object permission is enabled in the Salesforce CRM org.",
+      "C": "Confirm the Create object permission is enabled in the Data 360 org.",
+      "D": "Confirm the Modify object permission is enabled in the Data 360 org."
+    },
+    "respuesta": "A",
+    "explicacion": "Cuando el conector estándar de CRM se ciega y no arroja objetos nativos o personalizados específicos para poder consumirlos e ingresarlos, la falla radica casi infaliblemente en que el Usuario Integrador ('Data Cloud Salesforce Connector Integration User') carece de las credenciales fundamentales de lectura global ('View All') para escrutar y extraer las entrañas de dicho objeto en la Org originaria."
+  },
+  {
+    "id": 80,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "A data science team has developed a custom propensity-to-churn model in Amazon SageMaker. The company wants to use this model to score its Unified Profiles in Data 360 and use those scores for a highpriority retention segment. The Data 360 Consultant needs to ensure the data is not duplicated or moved out of Data 360 during this process. Which feature should the consultant use to integrate this model?",
+    "opciones": {
+      "A": "Einstein Studio Bring Your Own Model (BYOM)",
+      "B": "Model Builder in Prompt Builder",
+      "C": "Streaming Data Transforms",
+      "D": "Ingestion API"
+    },
+    "respuesta": "A",
+    "explicacion": "Redundancia doctrinal similar a la pregunta 54; Empalmar los dictámenes de cerebros artificiales foráneos pesados albergados en granjas ajenas (AWS SageMaker, Google Vertex, Databricks) para escrutar la masa unificada sin violentar la integridad Zero-Copy y propiciar fugas o replicaciones masivas de datos crudos, se corona empleando la integración directa BYOM (Bring Your Own Model) en Einstein Studio."
+  },
+  {
+    "id": 81,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "A Data 360 Consultant at Northern Trail Outfitters is attempting to ingest a field from the Contact object in Salesforce CRM that contains both yyyy-mm-dd and yyyy-mm-dd hh:mm:ss values. The target field is set to Date datatype. Which statement is true in this situation?",
+    "opciones": {
+      "A": "The target field will only hold the time part and ignore the date part.",
+      "B": "The target field will throw an error and store null values.",
+      "C": "The target field will only hold the date part and ignore the time part.",
+      "D": "The target field will be able to hold both types of values."
+    },
+    "respuesta": "C",
+    "explicacion": "Si un campo de origen contiene valores mixtos (fechas puras y fechas con horas) y se mapea hacia un campo destino con tipo de dato `Date` (Fecha), el motor de ingestión de Data Cloud trunca automáticamente la porción de tiempo y preserva únicamente la parte de la fecha, sin arrojar error ni insertar nulos."
+  },
+  {
+    "id": 82,
+    "categoria": "Identity Resolution and Unification",
+    "pregunta": "A Data 360 Consultant for Northern Trail Outfitters is observing Identity Resolution processing metrics. The consultant notices that the volume of source profiles processed in the most recent batch is less than the total volume of source profiles. What is the most likely mechanism that causes source profiles to be skipped during Identity Resolution processing?",
+    "opciones": {
+      "A": "A profile is only sent for unification if the assigned data stream is running at its maximum frequency.",
+      "B": "A profile is skipped if the calculated Unification Score does not meet the minimum threshold set in the identity resolution rules.",
+      "C": "A profile is only processed if a pre-processing step confirms a change in its data since the last processing run.",
+      "D": "A profile is excluded if it fails the initial Data Quality Score check, preventing unification."
+    },
+    "respuesta": "C",
+    "explicacion": "Para optimizar recursos y tiempos de cómputo, el motor de Resolución de Identidad implementa procesamiento delta. Solo evalúa y procesa perfiles de origen si detecta, mediante un paso de pre-procesamiento, que han sufrido alguna modificación o actualización de datos desde la última ejecución."
+  },
+  {
+    "id": 83,
+    "categoria": "Data 360 Fundamentals",
+    "pregunta": "A Data 360 Consultant wants to perform aggregations in 15-minute windows on data collected via the Interactions SDK or Mobile SDK. Which method should the consultant use?",
+    "opciones": {
+      "A": "Batch transform",
+      "B": "Streaming insight",
+      "C": "Formula fields",
+      "D": "Calculated insight"
+    },
+    "respuesta": "B",
+    "explicacion": "Las métricas calculadas sobre flujos de datos en vivo o ventanas de tiempo rodantes (como intervalos de 15 minutos en eventos de SDK) se construyen exclusivamente utilizando 'Streaming Insights' (Conocimientos en streaming), ya que procesan la data en movimiento antes de almacenarse."
+  },
+  {
+    "id": 84,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "A Data 360 Consultant wants to activate a segment on the Unified Individual object. Which steps are required from ingestion to activation?",
+    "opciones": {
+      "A": "Data > Data Lake Object > Identity Resolution and Unification > Segmentation > Activation",
+      "B": "Data > Data Lake Object > Map to Data Model Object > Activation",
+      "C": "Data > Data Lake Object > Map to Data Model Object > Identity Resolution and Unification > Segmentation > Activation",
+      "D": "Data > Data Lake Object > Map to Data Model Object > Identity Resolution and Unification > Activation"
+    },
+    "respuesta": "C",
+    "explicacion": "El flujo arquitectónico obligatorio en Data Cloud es estrictamente secuencial: 1) Ingesta del dato crudo al DLO, 2) Mapeo hacia el modelo armonizado DMO, 3) Ejecución de Resolución de Identidad para forjar el Individuo Unificado, 4) Creación de Segmentos sobre ese objeto consolidado, y 5) Activación hacia un destino final."
+  },
+  {
+    "id": 85,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "What is the main reason to use a secondary index on a data lake object (DLO)?",
+    "opciones": {
+      "A": "To compress the storage footprint of the raw data",
+      "B": "To transform raw data into a different data type",
+      "C": "To enable efficient querying on non-primary key attributes",
+      "D": "To increase the write speed of the ingestion pipeline"
+    },
+    "respuesta": "C",
+    "explicacion": "Los índices secundarios (Secondary Indexes) en objetos de lago de datos (DLO) se utilizan en bases de datos para mejorar drásticamente el rendimiento de lectura y extracción (querying) cuando las búsquedas se realizan basándose en atributos o columnas que no forman parte de la llave primaria."
+  },
+  {
+    "id": 86,
+    "categoria": "Data Ingestion and Transformation",
+    "pregunta": "A retail company has customer data scattered across CRM, ecommerce, and support platforms. Marketing and support teams struggle to get a complete picture of the customer because data is inconsistent and siloed. Which Salesforce Data 360 feature should the company implement first to solve this problem?",
+    "opciones": {
+      "A": "Unifying fragmented customer and business data into a single, comprehensive view",
+      "B": "Delivering personalized offers across channels based on advanced segmentation",
+      "C": "Creating real-time AI-driven recommendations for customer engagement",
+      "D": "Automating proactive service actions using IoT and predictive analytics"
+    },
+    "respuesta": "A",
+    "explicacion": "Frente a ecosistemas fragmentados y en silos (CRM, eCommerce, Soporte), la propuesta de valor inicial y fundacional de Data Cloud es la ingestión, armonización y unificación de dichos datos dispares para ensamblar un Perfil de Cliente Único y Comprensivo (Customer 360 View)."
+  },
+  {
+    "id": 87,
+    "categoria": "Segmentation and Activation",
+    "pregunta": "Data 360 receives a nightly file of all ecommerce transactions from the previous day. Several segments and activations depend upon calculated insights from the updated data in order to maintain accuracy in the customer's scheduled campaign messages. What should the Data 360 Consultant do to ensure the ecommerce data is ready for use for each of the scheduled activations?",
+    "opciones": {
+      "A": "Ensure the segments are set to Rapid Publish and set to refresh every hour.",
+      "B": "Ensure the activations are set to Incremental Activation and automatically publish every hour.",
+      "C": "Use Flow to trigger a change data event on the ecommerce data to refresh calculated insights and segments before the activations are scheduled to run.",
+      "D": "Set a refresh schedule for the calculated insights to occur every hour."
+    },
+    "respuesta": "D",
+    "explicacion": "Para garantizar que los segmentos dependientes utilicen las métricas estadísticas más recientes tras una carga nocturna, los 'Calculated Insights' que alimentan esos segmentos deben estar configurados con una programación de actualización regular (Refresh Schedule, ej. cada hora) para que se recalcule la información agregada a tiempo."
+  },
+  {
+    "id": 88,
+    "categoria": "Zero Copy, Federation and Data Sharing",
+    "pregunta": "A global ecommerce company uses Salesforce Data 360 to unify customer profiles across multiple systems, including Salesforce CRM, Commerce Cloud, and Snowflake. The business wants to securely leverage unified customer data across Snowflake to support analytics and downstream use cases. The solution must meet the following requirements: Customer data accessed from Snowflake must be read-only; Updates to customer profiles must be available in near real time; The overall architecture must minimize operational complexity and data duplication. Which approach should the Data 360 Consultant recommend?",
+    "opciones": {
+      "A": "Expose Data 360 data through REST APIs and ingest it into Snowflake using streaming ingestion.",
+      "B": "Schedule nightly exports of Data 360 data to cloud storage and load it into Snowflake using automated pipelines.",
+      "C": "Replicate Data 360 data into Salesforce standard objects and sync those objects to Snowflake using extract, transform, load (ETL) tools.",
+      "D": "Use Data 360 Data Sharing to share unified customer data directly to Snowflake."
+    },
+    "respuesta": "D",
+    "explicacion": "Para exponer la data unificada de Data Cloud hacia almacenes externos como Snowflake sin duplicar datos (evitando herramientas ETL) y permitiendo un acceso de solo-lectura en tiempo cuasi-real, la arquitectura nativa correcta es utilizar 'Data Shares' (Compartición de Datos - Zero Copy)."
+  },
+  {
+    "id": 89,
+    "categoria": "Zero Copy, Federation and Data Sharing",
+    "pregunta": "A Data 360 Consultant is setting up a zero-copy data federation connection with a partner, Snowflake. What is the first step the consultant must perform in Data 360?",
+    "opciones": {
+      "A": "Map the external data directly to the Unified Individual data model object (DMO).",
+      "B": "Establish a connection in the Data 360 Setup using the specific provider's credentials.",
+      "C": "Create a data stream using the Bulk API category using the specific provider's credentials.",
+      "D": "Run an identity resolution matching rule."
+    },
+    "respuesta": "B",
+    "explicacion": "El primer paso absoluto para cualquier integración de federación de datos o BYOL (Zero-Copy) con proveedores externos (Snowflake, Databricks, Redshift) es ir al menú de Configuración de Data Cloud (Setup) y establecer la Conexión segura autenticándose con las credenciales del proveedor."
+  },
+  {
+    "id": 90,
+    "categoria": "Zero Copy, Federation and Data Sharing",
+    "pregunta": "A Data 360 Consultant is configuring a zero-copy architecture where an external Snowflake instance needs to access Data 360 data without the latency of traditional extract, transform, load (ETL) processes. Which capability should the consultant use to expose Data 360 objects to the external Snowflake environment?",
+    "opciones": {
+      "A": "Data 360 Webhook Subscriptions",
+      "B": "Data 360 Data Shares",
+      "C": "Data 360 Data Bundles",
+      "D": "Data 360 S3 Direct Ingress"
+    },
+    "respuesta": "B",
+    "explicacion": "Al igual que en la pregunta 88, la capacidad nativa que permite a un motor de cómputo externo acceder y consultar directamente los objetos de Data Cloud, eliminando la latencia y duplicación propias de los procesos ETL tradicionales, es 'Data Shares' (Data Sharing)."
+  },
+  {
+    "id": 91,
+    "categoria": "Data Modeling and Harmonization",
+    "pregunta": "An analyst needs to verify the data populated in a newly mapped data model object (DMO). They open the Query Editor within the Data 360 interface to perform a quick check of the records. What is the programming language the analyst must use to retrieve and view records from the DMO within this tool?",
+    "opciones": {
+      "A": "Salesforce Object Query Language (SOQL)",
+      "B": "JavaScript Object Notation (JSON)",
+      "C": "Apex Data Manipulation Language",
+      "D": "Structured Query Language (SQL)"
+    },
+    "respuesta": "D",
+    "explicacion": "A diferencia del núcleo tradicional de Salesforce que opera con SOQL, el Editor de Consultas (Query Editor) en Data Explorer y el motor de Calculated Insights de Data Cloud están construidos para procesar sentencias analíticas complejas utilizando el estándar de la industria SQL (Structured Query Language)."
+  },
+  {
+    "id": 92,
+    "categoria": "Data Modeling and Harmonization",
+    "pregunta": "A user wants to be able to create a multi-dimensional metric to identify unified individual lifetime value (LTV). Which sequence of data model object (DMO) joins is necessary within the calculated insight to enable this calculation?",
+    "opciones": {
+      "A": "Sales Order > Unified Individual",
+      "B": "Unified Individual > Individual > Sales Order",
+      "C": "Sales Order > Individual > Unified Individual",
+      "D": "Unified Individual > Unified Link Individual > Sales Order"
+    },
+    "respuesta": "C",
+    "explicacion": "Al construir un Conocimiento Calculado (Calculated Insight) para totalizar métricas a nivel del individuo unificado (como el LTV), las uniones (Joins) lógicas en SQL deben seguir la trazabilidad del modelo de abajo hacia arriba: de las transacciones (Sales Order) al individuo que las originó (Individual), y de ahí al perfil consolidado final (Unified Individual)."
+  },
+  {
+    "id": 93,
+    "categoria": "Zero Copy, Federation and Data Sharing",
+    "pregunta": "A global insurance provider has tasked a Data 360 Consultant with optimizing performance for analytical queries running several times per hour against an external Redshift table in Salesforce Data 360 with no real-time needs. Which federation approach should the consultant recommend to balance performance and cost?",
+    "opciones": {
+      "A": "Configure cached acceleration to store and refresh external data for repeat queries.",
+      "B": "Use live query federation so every request hits the external compute engine directly.",
+      "C": "Implement file federation exclusively using Data 360 compute on storage.",
+      "D": "Ingest the external data into Salesforce Data 360 as a standard object."
+    },
+    "respuesta": "A",
+    "explicacion": "En arquitecturas de federación de consultas, si la necesidad requiere ejecutar la misma consulta repetidas veces sin exigir datos en estricto tiempo real, utilizar Aceleración en Caché (Cached Acceleration) minimiza la carga en el motor externo (Redshift), balanceando costos de cómputo y mejorando drásticamente el rendimiento de lectura local."
+  },
+  {
+    "id": 94,
+    "categoria": "Zero Copy, Federation and Data Sharing",
+    "pregunta": "A Data 360 Consultant wants to use Data 360 Clean Rooms to collaborate with a partner. Which statement is true regarding data security in this environment?",
+    "opciones": {
+      "A": "Both parties must move their data into a shared Amazon S3 bucket first.",
+      "B": "The data stays in its original location, and only the query results are shared.",
+      "C": "The provider must grant Modify All Data permissions to the consumer.",
+      "D": "PII is automatically decrypted for the consumer to ensure matching accuracy."
+    },
+    "respuesta": "B",
+    "explicacion": "La garantía de seguridad intrínseca de una Sala Limpia de Datos (Data Clean Room) es que los datos crudos o PII nunca abandonan su entorno nativo seguro. Ambas partes colaboran en una capa segura, pero únicamente se comparten los resultados agregados y anónimos de la superposición (overlap) consultada."
+  },
+  {
+    "id": 95,
+    "categoria": "Data 360 Fundamentals",
+    "pregunta": "A developer at Cloud Kicks is integrating customer data from a legacy shoe-inventory system and a web-store platform into Data 360. They need a way to ensure the Customer Name field from both systems is recognized as the same attribute. Which component should the developer use to provide this standardized structure?",
+    "opciones": {
+      "A": "An encryption key to secure PII during the data transfer",
+      "B": "A segmentation canvas for selecting desired customer attributes",
+      "C": "An identity resolution ruleset to merge duplicate records",
+      "D": "A data model object (DMO) to map and relate the data fields"
+    },
+    "respuesta": "D",
+    "explicacion": "La Armonización de Datos es la fase donde sistemas dispares aprenden a hablar el mismo idioma. Para lograr que campos nombrados distinto en orígenes diferentes (ej. 'Customer_Name' y 'ClientName') sean reconocidos como uno solo, ambos deben mapearse hacia el mismo atributo estandarizado en el Objeto de Modelo de Datos (DMO)."
+  }
+]
